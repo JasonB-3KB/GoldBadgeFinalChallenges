@@ -4,11 +4,13 @@ using System;
 namespace Komodo_Claims_Testing
 {
     [TestClass]
-    public class UnitTest1
+    public class Testing
     {
         [TestMethod]
         public void TestMethod1()
         {
+            
         }
     }
 }
+   

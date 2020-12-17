@@ -13,7 +13,7 @@ namespace Komodo_Claims_Console
 
         public void Run()
         {
-            MenuList();
+            SeedList();
             UserInterface();
         }
 
@@ -37,16 +37,16 @@ namespace Komodo_Claims_Console
                         EnterAClaim();
                         break;
                     case "2":
-                        ViewAllMenuItems();
+                        ViewAllClaims();
                         break;
                     case "3":
-                        DisplayMealByNumber();
+                        DisplayByClaimID();
                         break;
                     case "4":
-                        UpdateMenu();
+                        UpdateClaim();
                         break;
                     case "5":
-                        DeleteAMenuItem();
+                        DeleteAClaim();
                         break;
                     case "6":
                         Console.WriteLine("Have a Wonderful rest of your Day!");
@@ -69,109 +69,132 @@ namespace Komodo_Claims_Console
             Console.WriteLine("What ID number would you like to use for this claim?");
             newContent.ClaimID = Int32.Parse(Console.ReadLine());
 
-            Console.WriteLine("What would you like to name this meal?");
-            newContent.MealName = Console.ReadLine();
+            Console.WriteLine("Enter the number for Claim Type?\n "  +
+                " 1. Car\n " +
+                " 2. Home\n " +
+                " 3. Theft \n " +
+                " 4. Boat");
+            newContent.ClaimType = (ClaimType)int.Parse(Console.ReadLine());
 
             Console.WriteLine("Give a brief description of this claim:");
             newContent.Description = Console.ReadLine();
 
-            Console.WriteLine("What items are in this Meal?");
-            newContent.MealItems = Console.ReadLine();
+            Console.WriteLine("What is the amount of the claim?");
+            newContent.ClaimAmount = Double.Parse(Console.ReadLine());
 
-            Console.WriteLine("What is the price of this Meal?");
-            newContent.Price = Double.Parse(Console.ReadLine());
+            Console.WriteLine("What is the date of incident? eg. yyyy/mm/dd");
+            newContent.DateOfIncident = Convert.ToDateTime(Console.ReadLine());
 
-            _claimsInfo.AddItemsToMenu(newContent);
+            Console.WriteLine("What is the date of the claim? eg. yyyy/mm/dd");
+            newContent.DateOfClaim = Convert.ToDateTime(Console.ReadLine());
+
+            _claimsInfo.AddClaim(newContent);
         }
 
-        private void ViewAllMenuItems()
+        private void ViewAllClaims()
         {
             Console.Clear();
-            List<Claims> listOfItems = _claimsInfo.GetMenu();
+            Queue<Claims> listOfItems = _claimsInfo.GetList();
+            Console.WriteLine("{0, -8} {1, -8} {2, -30} {3, -18} {4, -20} {5, -15} {6, -7}\n", "ClaimID", "Type", "Description", "Claim Amount", "Date of Incident", "Date of Claim", "Is Valid");
 
             foreach (Claims content in listOfItems)
             {
-                Console.WriteLine($"Meal Number: {content.MealNumber}\n" +
-                    $"Meal Name: {content.MealName}\n" +
-                    $"Description: {content.Description}\n" +
-                    $"Meal Includes: {content.MealItems}\n" +
-                    $"Price: {content.Price}\n");
+                Console.WriteLine("{0, -8} {1, -8} {2, -30} {3, -18} {4, -20} {5, -15} {6, -7}", $"{content.ClaimID}", $"{content.ClaimType}", $"{content.Description}", $"{content.ClaimAmount:C}", $"{content.DateOfIncident:d}", $"{content.DateOfClaim:d}", $"{content.IsValid}");
             }
         }
-        private void DisplayMealByNumber()
+        private void DisplayByClaimID()
         {
             Console.Clear();
-            Console.WriteLine("Enter the Meal number:");
-            int numberOfMeal = int.Parse(Console.ReadLine());
-            Claims content = _claimsInfo.GetMealByNumber(numberOfMeal);
+            Console.WriteLine("Enter the Claim ID:");
+            int claimNumber = int.Parse(Console.ReadLine());
+            Claims content = _claimsInfo.GetClaimByNumber(claimNumber);
+            Console.WriteLine("{0, -8} {1, -8} {2, -30} {3, -18} {4, -20} {5, -15} {6, -7}\n", "ClaimID", "Type", "Description", "ClaimAmount", "Dateof Incident", "Dateof Claim", "IsValid");
 
             if (content != null)
             {
-                Console.WriteLine($"Meal Number: {content.MealNumber}\n" +
-                    $"Meal Name: {content.MealName}\n" +
-                    $"Description: {content.Description}\n" +
-                    $"Meal Includes: {content.MealItems}\n" +
-                    $"Price: {content.Price}\n");
+                Console.WriteLine("{0, -8} {1, -8} {2, -30} {3, -18} {4, -20} {5, -15} {6, -7}", $"{content.ClaimID}", $"{content.ClaimType}", $"{content.Description}", $"{content.ClaimAmount:C}", $"{content.DateOfIncident:d}", $"{content.DateOfClaim:d}", $"{content.IsValid}");
             }
             else
             {
-                Console.WriteLine("No menu item by that name.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No claim found for that ID.");
+                Console.ResetColor();
             }
 
         }
-        private void UpdateMenu()
+        private void UpdateClaim()
         {
-            ViewAllMenuItems();
-            Console.WriteLine("Enter the meal number you would like to update");
-            int oldMealNumber = int.Parse(Console.ReadLine());
+            ViewAllClaims();
+            Console.WriteLine("Enter the ID you would like to update");
+            int oldClaimNumber = int.Parse(Console.ReadLine());
             Claims newContent = new Claims();
-            Console.WriteLine("Re-Enter the Meal Number:");
-            newContent.MealNumber = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the new Meal Name:");
-            newContent.MealName = Console.ReadLine();
-            Console.WriteLine("Enter the Description:");
-            newContent.Description = Console.ReadLine();
-            Console.WriteLine("What items are included with this meal?");
-            newContent.MealItems = Console.ReadLine();
-            Console.WriteLine("What is the the price of this meal?");
-            newContent.Price = Double.Parse(Console.ReadLine());
 
-            bool wasUpdated = _claimsInfo.UpdateExistingMenu(oldMealNumber, newContent);
+            Console.WriteLine("Enter an ID Number:");
+            newContent.ClaimID = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the number for Claim Type?\n " +
+                " 1. Car\n " +
+                " 2. Home\n " +
+                " 3. Theft \n " +
+                " 4. Boat");
+            newContent.ClaimType = (ClaimType)int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Give a brief description of this claim:");
+            newContent.Description = Console.ReadLine();
+
+            Console.WriteLine("What is the amount of the claim?");
+            newContent.ClaimAmount = Double.Parse(Console.ReadLine());
+
+            Console.WriteLine("What is the date of incident? eg. yyyy/mm/dd");
+            newContent.DateOfIncident = Convert.ToDateTime(Console.ReadLine());
+
+            Console.WriteLine("What is the date of the claim? eg. yyyy/mm/dd");
+            newContent.DateOfClaim = Convert.ToDateTime(Console.ReadLine());
+
+            bool wasUpdated = _claimsInfo.UpdateExistingClaims(oldClaimNumber, newContent);
             if (wasUpdated)
             {
-                Console.WriteLine("Menu updated successfully!");
+                Console.WriteLine("Claim updated successfully!");
             }
             else
             {
-                Console.WriteLine("Could not update the menu.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Could not update the claim.");
+                Console.ResetColor();
             }
         }
-        private void DeleteAMenuItem()
+        public void DeleteAClaim()
         {
-            ViewAllMenuItems();
-            Console.WriteLine("\nEnter the Meal Number you would like to remove:");
+            ViewAllClaims();
+            Console.WriteLine("\nEnter the Claim ID you would like to delete:");
             int input = int.Parse(Console.ReadLine());
-            bool wasDeleted = _claimsInfo.RemoveItemsFromMenu(input);
+            bool wasDeleted = _claimsInfo.RemoveClaims(input);
             if (wasDeleted)
             {
-                Console.WriteLine("The Meal Number was successfully deleted.");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("The claim was successfully deleted.");
+                Console.ResetColor();
             }
             else
             {
-                Console.WriteLine("The Meal Number was not deleted.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The claim was not deleted.");
+                Console.ResetColor();
             }
+            
         }
-        private void MenuList()
+        private void SeedList()
         {
-            Claims one = new Claims(1, "Cheeseburger with Fries", "Cheeseburger with lettuce, tomato, onion, mayo and ketchup, served with fries", "Cheeseburger and Fries", 5.00, MenuNumber.CheeseburgerFries);
-            Claims two = new Claims(2, "Hamburger with Fries", "Hamburger with lettuce, tomato, onion, mayo and ketchup, served with fries", "Hamburger and Fries", 4.50, MenuNumber.HamburgerFries);
-            Claims three = new Claims(3, "Chicken with Fries", "Chicken Strips served with fries", "4 Chicken Strips and Fries", 5.50, MenuNumber.ChickenStripsFries);
-            Claims four = new Claims(4, "Fish and Fries", "Fish sandwich with tartar sauce and served with fries", "Fish Sandwich and Fries", 7.00, MenuNumber.FishSandwichFries);
+            Claims one = new Claims(1, ClaimType.Car, "Car Accident on 465", 400, new DateTime(2018, 4, 25), new DateTime(2018, 4, 27), true);
+            Claims two = new Claims(2, ClaimType.Home, "House fire in kitchen.", 4000, new DateTime(2018, 4, 11) , new DateTime(04, 12, 18), true);
+            Claims three = new Claims(3, ClaimType.Theft, "Stolen pancakes.", 4, new DateTime(2018, 4, 27), new DateTime(2018, 6, 01), false);
+            Claims four = new Claims(4, ClaimType.Car, "Wreck on I-70", 2000, new DateTime(2018, 4, 27), new DateTime(2018, 4, 28), true);
+            
 
-            _claimsInfo.AddItemsToMenu(one);
-            _claimsInfo.AddItemsToMenu(two);
-            _claimsInfo.AddItemsToMenu(three);
-            _claimsInfo.AddItemsToMenu(four);
+            _claimsInfo.AddClaim(one);
+            _claimsInfo.AddClaim(two);
+            _claimsInfo.AddClaim(three);
+            _claimsInfo.AddClaim(four);
         }
     }
 }

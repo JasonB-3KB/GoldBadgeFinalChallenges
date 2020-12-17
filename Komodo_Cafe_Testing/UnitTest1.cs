@@ -9,6 +9,10 @@ namespace Komodo_Cafe_Testing
         [TestMethod]
         public void TestMethod1()
         {
+            public void AddItemsToMenu(Menu content)
+            {
+                _menuItems.Add(content);
+            }
         }
     }
 }

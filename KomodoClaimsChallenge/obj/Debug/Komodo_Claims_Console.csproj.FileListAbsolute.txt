@@ -1,0 +1,10 @@
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\bin\Debug\KomodoClaimsChallenge.exe.config
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\bin\Debug\KomodoClaimsChallenge.exe
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\bin\Debug\KomodoClaimsChallenge.pdb
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\bin\Debug\Komodo_Claims_Library.dll
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\bin\Debug\Komodo_Claims_Library.pdb
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\obj\Debug\Komodo_Claims_Console.csprojAssemblyReference.cache
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\obj\Debug\Komodo_Claims_Console.csproj.CoreCompileInputs.cache
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\obj\Debug\Komodo_Claims_Console.csproj.CopyComplete
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\obj\Debug\KomodoClaimsChallenge.exe
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\KomodoClaimsChallenge\obj\Debug\KomodoClaimsChallenge.pdb

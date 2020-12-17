@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Komodo_Claims_Library
 {
-    class ClaimsRepository
+    public class ClaimsRepository
     {
-        private List<Claims> _claimsInfo = new List<Claims>();
+        private readonly Queue<Claims> _claimsInfo = new Queue<Claims>();
         //create
-        public void AddItemsToMenu(Claims content)
+        public void AddClaim(Claims content)
         {
-            _claimsInfo.Add(content);
+            _claimsInfo.Enqueue(content);
         }
         //read
-        public List<Claims> GetMenu()
+        public Queue<Claims> GetList()
         {
             return _claimsInfo;
         }
@@ -29,11 +29,11 @@ namespace Komodo_Claims_Library
                     $"Description: {content.Description}\n" +
                     $"Amount:$ {content.ClaimAmount}\n" +
                     $"Date of Accident: {content.DateOfIncident}\n" +
-                    $"Date of Claim: {content.DateOfClaim} 
+                    $"Date of Claim: {content.DateOfClaim}");
             }
         }
         //update
-        public bool UpdateExistingMenu(int originalItem, Claims newContent)
+        public bool UpdateExistingClaims(int originalItem, Claims newContent)
         {
             Claims oldContent = GetClaimByNumber(originalItem);
 
@@ -54,7 +54,7 @@ namespace Komodo_Claims_Library
                 return false;
             }
         }
-        public bool RemoveItemsFromMenu(int claimID)
+        public bool RemoveClaims(int claimID)
         {
             Claims content = GetClaimByNumber(claimID);
 
@@ -63,7 +63,7 @@ namespace Komodo_Claims_Library
                 return false;
             }
             int initialCount = _claimsInfo.Count;
-            _claimsInfo.Remove(content);
+            _claimsInfo.Dequeue();
 
             if (initialCount > _claimsInfo.Count)
             {
