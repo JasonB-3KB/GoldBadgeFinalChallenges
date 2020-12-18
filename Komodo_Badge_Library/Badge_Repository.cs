@@ -20,6 +20,7 @@ namespace Komodo_Badge_Library
         public void AddBadge(Badge badge)
         {
             _doorAccess.Add(badge.BadgeID, badge.DoorAccess);
+
         }
 
         //read
@@ -29,20 +30,51 @@ namespace Komodo_Badge_Library
         }
 
         //update
-        public void GiveAccess(int badgeID, string doorAccess)
+        public bool GiveAccess(int badgeID, string doorAccess)
         {
             List<string> doors = _doorAccess[badgeID];
+            int previousCount = doors.Count;
             doors.Add(doorAccess);
+            int afterCount = doors.Count;
+            if (afterCount > previousCount)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //delete
-        public void RemoveAccess(int badgeID, string doorAccess)
+        public bool RemoveAccess(int badgeID, string doorAccess)
         {
             List<string> doors = _doorAccess[badgeID];
+            int previousCount = doors.Count;
             doors.Remove(doorAccess);
-        }             
+            int afterCount = doors.Count;
+            if (afterCount < previousCount)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //helper
+        public KeyValuePair<int, List<string>> GetBadgeByID(int badgeID)
+        {
+            foreach (KeyValuePair<int, List<string>>badge in _doorAccess)
+            {
+                if (badge.Key == badgeID)
+                {
+                    return badge;
+                }
+            }
+            return default;
+        }
 
-        
 
     }
 }

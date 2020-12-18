@@ -54,6 +54,7 @@ namespace Komodo_Claims_Library
                 return false;
             }
         }
+        //delete
         public bool RemoveClaims(int claimID)
         {
             Claims content = GetClaimByNumber(claimID);

@@ -12,3 +12,5 @@ C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChalle
 C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\Komodo_Badge_Testing\obj\Debug\Komodo_Badge_Testing.csproj.CopyComplete
 C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\Komodo_Badge_Testing\obj\Debug\Komodo_Badge_Testing.dll
 C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\Komodo_Badge_Testing\obj\Debug\Komodo_Badge_Testing.pdb
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\Komodo_Badge_Testing\bin\Debug\Komodo_Badge_Library.dll
+C:\Users\Bagwill\Desktop\ElevenFiftyProjects\DotNetProjects\GoldBadgeFinalChallenge\Komodo_Badge_Testing\bin\Debug\Komodo_Badge_Library.pdb
